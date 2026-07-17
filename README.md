@@ -4,27 +4,27 @@ Interactive redesign concepts for [auditbase.com](https://auditbase.com). **UI o
 backend wiring. All findings/data on the page are a fictional demo specimen ("NovaVault"),
 not real customer data.
 
-## Live demos — three directions to compare
+## Live demos
 
+- **v4 · "The Network"** (dark, AI / neural-network, Three.js) →
+  **https://nabeel-javed.github.io/auditbase-redesign/v4/**
 - **v2 · "The Reading Machine"** (dark, ASCII/WebGL) →
   **https://nabeel-javed.github.io/auditbase-redesign/**
-- **v3 · "Clarity / Through Glass"** (light, Three.js glass) →
-  **https://nabeel-javed.github.io/auditbase-redesign/v3/**
 
 Best viewed on desktop in Chrome/Safari/Firefox. Scroll slowly through each hero. Use the top
 nav to reach the Console, Sample report, Detectors, and Pricing pages.
 
 ## What's here
 
-- **`v3/`** — *"Clarity."* A light, premium direction built around a real **Three.js** glass
-  crystal (the opaque contract made transparent) with severity-coloured flaws suspended inside
-  that light up as you scroll. Vite + TS, Three.js (`MeshPhysicalMaterial` transmission),
-  GSAP ScrollTrigger, Lenis. Fonts: Fraunces + Instrument Sans + JetBrains Mono.
+- **`v4/`** — *"The Network."* Dark, AI/tech. The hero is a live **Three.js neural network** —
+  glowing neurons in layers, data pulses flowing forward through the edges, and flaw-nodes that
+  fire red as the adversarial AI reads the contract. Three.js + UnrealBloom, GSAP ScrollTrigger,
+  Lenis. Fonts: Space Grotesk + JetBrains Mono.
 - **`v2/`** — *"The Reading Machine."* Dark. One continuous WebGL organism renders everything
   as ASCII glyphs and morphs `specimen → code → state-tree → report` as you scroll. Vite + TS,
   hand-rolled raw-WebGL2 engine (`v2/src/machine.ts`), Instrument Serif + IBM Plex Mono.
-- **root `index.html`** — v1, an earlier static "machine and the document" concept
-  (editorial serif + mono, no WebGL). Kept for comparison.
+- **`v3/`** — *"Clarity."* A light Three.js glass direction (in the repo, not deployed).
+- **root `index.html`** — v1, an earlier static "machine and the document" concept.
 
 ## Run locally
 
