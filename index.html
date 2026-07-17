@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="dark" />
+<title>Auditbase — The Reading Machine</title>
+<style>html{background:#0B0A08}</style>
+  <script type="module" crossorigin src="./assets/index-BXzYnrOR.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-rPjIFTRJ.css">
+</head>
+<body>
+
+<canvas id="machine" aria-hidden="true"></canvas>
+<div class="noise" aria-hidden="true"></div>
+<div id="rbar" aria-hidden="true"></div>
+
+<!-- reticle cursor -->
+<div id="cursor" aria-hidden="true">
+  <i class="cx"></i><i class="cy"></i><i class="cdot"></i>
+  <span class="clabel"></span>
+  <span class="ccoords"></span>
+</div>
+
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="#/">Auditbase<span class="ast">*</span></a>
+  <div class="nav-links">
+    <a href="#/#engine" data-nav="home-engine" data-cur="ENGINE">Engine</a>
+    <a href="#/detectors" data-nav="detectors" data-cur="CATALOG">Detectors</a>
+    <a href="#/report" data-nav="report" data-cur="SPECIMEN">Sample report</a>
+    <a href="#/#pricing" data-nav="home-pricing" data-cur="CREDITS">Pricing</a>
+    <a href="#/console" data-nav="console" data-cur="APP">Console</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <span class="nav-tick" aria-hidden="true"><i></i>ENGINE v3.2 — NOMINAL</span>
+  <a class="nav-signin" href="#/console">Sign in</a>
+  <a class="btn primary small" href="#/console" data-cur="FREE SCAN">Run a scan</a>
+  <button class="burger" id="burger" aria-label="Open menu"><i></i><i></i><i></i></button>
+</nav>
+
+<div class="mmenu" id="mmenu">
+  <button class="mclose" id="mclose">CLOSE ×</button>
+  <a href="#/"><small>00</small>Home</a>
+  <a href="#/#engine"><small>01</small>Engine</a>
+  <a href="#/detectors"><small>02</small>Detectors</a>
+  <a href="#/report"><small>03</small>Sample report</a>
+  <a href="#/#pricing"><small>04</small>Pricing</a>
+  <a href="#/console"><small>05</small>Console</a>
+</div>
+
+<!-- ================================================================
+     HOME  (active by default → landing shows even if JS never boots)
+================================================================= -->
+<section data-route="home" class="active">
+
+  <!-- HERO -->
+  <header class="hero" id="hero">
+    <div class="hud" aria-hidden="true">
+      <span class="h1p">✛ SPECIMEN-01 · TORUS/K(2,3)</span>
+      <span class="h2p">ENGINE v3.2 · <b id="fps">60FPS</b></span>
+      <span class="h3p">STATIC × SYMBOLIC × ADVERSARIAL</span>
+      <span class="h4p" id="hudcoords">X 0000 · Y 0000</span>
+    </div>
+    <div class="container hero-inner">
+      <p class="eyebrow rv">Smart contract security — in hours, not months</p>
+      <h1 id="heroline" class="rv" style="--d:.05s">
+        <span class="ln"><span class="scramble" data-text="Every path.">Every path.</span></span>
+        <span class="ln"><span class="scramble" data-text="Every state.">Every state.</span></span>
+        <span class="ln lnmark"><em class="scramble" data-text="Every exploit.">Every exploit.</em><svg class="marksvg" viewBox="0 0 100 8" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M1 5 Q 12 1, 25 4 T 50 4 T 75 4 T 99 3"/></svg></span>
+      </h1>
+      <div class="hero-low rv" style="--d:.14s">
+        <p class="sub">Auditbase reads your Solidity the way an attacker does — 247 detectors,
+          symbolic execution over every reachable state, and an adversarial AI that drafts the
+          proof-of-concept. Report in hours, not months.</p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="#/console" data-cur="100 CREDITS FREE">Run first scan — free<span class="arr">→</span></a>
+          <a class="btn" href="#/report" data-cur="READ IT">Sample report</a>
+        </div>
+        <p class="hero-meta"><b>100 credits</b> on signup · no card · <b>SOC 2</b> Type II</p>
+      </div>
+    </div>
+    <div class="scrollcue" aria-hidden="true"><span>SCROLL — THE MACHINE READS</span><i></i></div>
+  </header>
+
+  <!-- ENGINE — pinned morph chapter -->
+  <div class="chapter" id="engine">
+    <div class="ch-stage">
+      <div class="container">
+        <p class="eyebrow">The analysis engine</p>
+        <div class="ch-copy on" data-ch="0">
+          <h2><span class="chno">01</span>Static sweep</h2>
+          <p class="sub">The specimen is flattened into raw text and swept — 247 detectors
+            run the known-vulnerability battery across every line. Seconds.</p>
+          <span class="ch-meta">FORMATION — CODE FIELD · 22,000 GLYPHS</span>
+        </div>
+        <div class="ch-copy" data-ch="1">
+          <h2><span class="chno">02</span>Symbolic execution</h2>
+          <p class="sub">A constraint solver walks every reachable branch — the machine grows
+            the state tree a human review never has time to visit. One path turns red.</p>
+          <span class="ch-meta">FORMATION — STATE TREE · PATH 2,904</span>
+        </div>
+        <div class="ch-copy" data-ch="2">
+          <h2><span class="chno">03</span>Adversarial AI</h2>
+          <p class="sub">An agent argues with your code — intent versus implementation — then
+            files everything into a document your board can read. The machine prints.</p>
+          <span class="ch-meta">FORMATION — REPORT LATTICE · AB-2607</span>
+        </div>
+        <div class="ch-progress" aria-hidden="true"><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCAN DEMO — scroll-scrubbed -->
+  <div class="scansec" id="scandemo">
+    <div class="scan-sticky">
+      <div class="container scan-grid">
+        <div class="scan-copy">
+          <p class="eyebrow">Live specimen</p>
+          <h2 class="h-sec">Scroll to run<br>the scan.</h2>
+          <p class="sub">Your scroll is the scheduler. The lamp walks the contract, findings
+            pin as they're proven, and the report prints at the bottom.</p>
+          <div class="scan-phase" id="scanphase">STANDBY</div>
+        </div>
+        <div class="scanwrap">
+          <div class="scanpanel corners"><i></i><i></i><i></i><i></i>
+            <div class="scanhead">
+              <span class="led" id="scanled"></span>
+              <span class="fname">specimen/NovaVault.sol</span>
+              <span class="fmeta">154 LOC · 0.8.19<br>commit 9f3ab2</span>
+            </div>
+            <div class="codearea" id="codearea">
+              <div class="lamp" id="lamp"></div>
+            </div>
+            <div class="scancard" id="scancard">
+              <svg class="ring" width="62" height="62" viewBox="0 0 62 62" aria-hidden="true">
+                <circle cx="31" cy="31" r="26" fill="none" stroke="rgba(25,22,17,.14)" stroke-width="4"/>
+                <circle id="cardring" cx="31" cy="31" r="26" fill="none" stroke="#C05621" stroke-width="4"
+                  stroke-dasharray="163.4" stroke-dashoffset="163.4" transform="rotate(-90 31 31)"/>
+                <text id="cardscore" x="31" y="38" text-anchor="middle">0</text>
+              </svg>
+              <div>
+                <h4>NovaVault Protocol</h4>
+                <div class="cardmeta">AB-2607-NV · 4 FINDINGS · 12M 41S</div>
+                <div class="verdict">1 CRITICAL — WITHDRAW() RE-ENTERABLE</div>
+              </div>
+              <div class="stamp" id="stamp">ELEVATED<br>RISK</div>
+            </div>
+          </div>
+          <div class="fchips" id="fchips"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="mq" aria-hidden="true">
+    <div class="mq-track" id="mqtrack">
+      <span>SOLIDITY</span><span>VYPER</span><span>MOVE</span><span>CAIRO</span><span>RUST</span>
+      <span class="dim">/</span><span>ETHEREUM</span><span>BASE</span><span>ARBITRUM</span><span>OPTIMISM</span>
+      <span>POLYGON</span><span>BNB CHAIN</span><span>AVALANCHE</span><span class="dim">/</span><span>ERC-20</span>
+      <span>ERC-4626</span><span>ERC-721</span><span>PROXIES</span><span>DIAMONDS</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="container stats-grid">
+      <div class="stat rv"><div class="n">$<span data-count="50">0</span>B<sup>+</sup></div><div class="l">TVL analyzed</div></div>
+      <div class="stat rv" style="--d:.07s"><div class="n"><span data-count="500">0</span><sup>+</sup></div><div class="l">Protocols scanned</div></div>
+      <div class="stat rv" style="--d:.14s"><div class="n"><span data-count="247">0</span></div><div class="l">Live detectors</div></div>
+      <div class="stat rv" style="--d:.21s"><div class="n">&lt;<span data-count="12">0</span>h</div><div class="l">Median turnaround</div></div>
+    </div>
+  </div>
+
+  <!-- DETECTOR WALL -->
+  <div class="wallsec" id="detectorwall">
+    <div class="container">
+      <div class="wallhead">
+        <div>
+          <p class="eyebrow rv">The detector base</p>
+          <h2 class="h-sec rv" style="--d:.05s;margin-bottom:0">247 detectors, drawn to scale.</h2>
+          <p class="sub rv" style="--d:.1s;margin-top:14px">Every cell is a real check that runs on
+            every scan. Move your reticle across them.</p>
+        </div>
+        <div class="fbar rv" style="--d:.12s" id="wallfilter">
+          <button class="fbtn on" data-f="all">All</button>
+          <button class="fbtn" data-f="crit">Critical</button>
+          <button class="fbtn" data-f="high">High</button>
+          <button class="fbtn" data-f="med">Medium</button>
+          <button class="fbtn" data-f="low">Low</button>
+          <button class="fbtn" data-f="info">Info</button>
+          <button class="fbtn" data-f="gas">Gas</button>
+        </div>
+      </div>
+      <div class="wall rv" id="wall" style="--d:.08s"></div>
+      <div class="wallfoot rv">
+        <span id="wallcount">247 / 247 SHOWN</span>
+        <a class="btn small" href="#/detectors" data-cur="FULL LIST">Browse the catalog<span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAPER / DELIVERABLE -->
+  <div class="paperband paperworld" id="deliverable">
+    <div class="container pg">
+      <div>
+        <p class="eyebrow rv">The deliverable</p>
+        <h2 class="h-sec rv" style="--d:.05s">A report your board can actually read.</h2>
+        <p class="sub rv" style="--d:.1s">One scan, two audiences. Engineers get findings with
+          proofs-of-concept and line-level fixes. Boards, LPs and regulators get MiCA-aligned
+          matrices, quantified risk scores and an executive summary in plain language.</p>
+        <div class="plist rv" style="--d:.15s">
+          <div><b>MiCA</b>EU compliance matrix, generated per scan</div>
+          <div><b>SCORE</b>0–100 quantified risk, comparable across a portfolio</div>
+          <div><b>EXEC</b>summary written for non-engineers — no jargon walls</div>
+          <div><b>PoC</b>every finding proven, or it doesn't ship</div>
+        </div>
+        <div class="hero-ctas rv" style="--d:.2s">
+          <a class="btn primary" href="#/report" data-cur="OPEN">Open the sample report<span class="arr">→</span></a>
+        </div>
+      </div>
+      <div class="sheetwrap rv" style="--d:.1s">
+        <div class="sheet">
+          <div class="shhead">
+            <span class="t">Security Assessment</span>
+            <span class="id">AB-2607-NV · JULY 2026</span>
+          </div>
+          <h5>Executive summary</h5>
+          <p class="body">The Auditbase engine conducted a comprehensive review of the
+            <span class="redline">NovaVault Protocol</span>, covering authorization paths, state
+            mutation and asset flows. One critical-severity finding permits
+            <span class="redline">re-entry during withdrawal</span>; remediation is a two-line
+            reorder. Overall posture: elevated, recoverable.</p>
+          <h5>Findings</h5>
+          <div class="frow"><span class="ftag fc">C-01</span>Reentrancy in withdraw() — state after call<span class="fpc">90%</span></div>
+          <div class="frow"><span class="ftag fh">H-01</span>Oracle price accepted without staleness check<span class="fpc">84%</span></div>
+          <div class="frow"><span class="ftag fm">M-01</span>setGuardian() lacks access control<span class="fpc">96%</span></div>
+          <div class="frow" style="border-bottom:none"><span class="ftag fl">L-01</span>Floating pragma ^0.8.19<span class="fpc">99%</span></div>
+          <h5>MiCA Article 68 — extract</h5>
+          <table>
+            <tr><th>Requirement</th><th>Status</th><th>Evidence</th></tr>
+            <tr><td>ICT risk mgmt</td><td class="mica-ok">PASS</td><td>§4.1</td></tr>
+            <tr><td>Incident readiness</td><td class="mica-ok">PASS</td><td>§4.3</td></tr>
+            <tr><td>Resilience testing</td><td class="mica-part">PARTIAL</td><td>C-01</td></tr>
+          </table>
+          <div class="mnote">⌐ state update after external call — classic. see C-01</div>
+          <div class="stamp2">4 FINDINGS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONITORING -->
+  <div class="mon" id="monitoring">
+    <div class="container mg">
+      <div class="rv">
+        <div class="term corners"><i></i><i></i><i></i><i></i>
+          <div class="termlines" id="termlines"></div>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow rv">Continuous monitoring</p>
+        <h2 class="h-sec rv" style="--d:.05s">Deployment isn't the finish line.</h2>
+        <p class="sub rv" style="--d:.1s">New exploit patterns land in the detector base weekly.
+          Contracts under watch re-scan automatically against every addition — and findings page
+          your team in Slack before they page you on-chain.</p>
+        <div class="hero-ctas rv" style="--d:.15s">
+          <a class="btn" href="#/console" data-cur="APP">See monitoring in console<span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="pricing" id="pricing">
+    <div class="container">
+      <p class="eyebrow rv">Pricing</p>
+      <h2 class="h-sec rv" style="--d:.05s">Pay for depth. Not for seats.</h2>
+      <div class="tiers rv" style="--d:.1s">
+        <div class="tier" data-cur="10 CR">
+          <div class="tname">Quick check</div>
+          <div class="tprice">10</div><div class="tunit">credits / scan</div>
+          <p class="tdesc">The sanity pass while you build.</p>
+          <ul>
+            <li>Full 247-detector static sweep</li>
+            <li>Results in minutes</li>
+            <li>Severity-ranked findings</li>
+            <li class="no">PoC generation</li>
+            <li class="no">Custom instructions</li>
+          </ul>
+          <a class="btn" href="#/console">Start quick</a>
+        </div>
+        <div class="tier rec" data-cur="RECOMMENDED">
+          <div class="rectag">RECOMMENDED</div>
+          <div class="tname">Complete audit</div>
+          <div class="tprice">20</div><div class="tunit">credits / scan</div>
+          <p class="tdesc">The full three-layer interrogation.</p>
+          <ul>
+            <li>Static + symbolic + adversarial AI</li>
+            <li>30–60 minute turnaround</li>
+            <li>PoC generation on findings</li>
+            <li>Custom instructions</li>
+            <li>Compliance-ready report</li>
+          </ul>
+          <a class="btn" href="#/console">Run complete</a>
+        </div>
+        <div class="tier" data-cur="180 CR">
+          <div class="tname">Deep research</div>
+          <div class="tprice">180</div><div class="tunit">credits / scan</div>
+          <p class="tdesc">For the contracts that hold the money.</p>
+          <ul>
+            <li>2–24 hour exhaustive analysis</li>
+            <li>Highest accuracy tier</li>
+            <li>Economic-exploit modelling</li>
+            <li>PoC + fix validation</li>
+            <li>Report-grade documentation</li>
+          </ul>
+          <a class="btn" href="#/console">Go deep</a>
+        </div>
+      </div>
+      <div class="pfoot rv">
+        <span><b>100 credits free</b> on signup</span>
+        <span>subscribers pay <b>no platform fee</b></span>
+        <span>plans from <b>$49/mo</b></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="container">
+      <h2 class="rv"><span class="scramble scramble-hover" data-text="Know before they do.">Know before they do.</span></h2>
+      <p class="sub rv" style="--d:.07s">First scan's on us — 100 credits, no card, verdict inside the hour.</p>
+      <div class="hero-ctas rv" style="--d:.12s">
+        <a class="btn primary" href="#/console" data-cur="GO">Run first scan — free<span class="arr">→</span></a>
+        <a class="btn" href="#/detectors" data-cur="247">Browse the detectors</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================================================================
+     CONSOLE
+================================================================= -->
+<section data-route="console">
+  <div class="cs-wrap">
+    <aside class="cs-side">
+      <h6>Console</h6>
+      <a class="on" href="#/console">Overview</a>
+      <a href="#/console">Scans <span class="k">6</span></a>
+      <a href="#/console">Monitoring <span class="k">12</span></a>
+      <a href="#/console">Compliance</a>
+      <a href="#/console">Credits</a>
+      <h6>Org</h6>
+      <a href="#/console">Team</a>
+      <a href="#/console">Settings</a>
+    </aside>
+    <main class="cs-main">
+      <div class="cs-tophead">
+        <div>
+          <div class="crumb">1EARTH — PRODUCTION</div>
+          <h2>Overview</h2>
+        </div>
+        <div class="right">
+          <span class="cs-cred">⚡ <b>100</b> CREDITS</span>
+          <a class="btn primary small" href="#/console">+ New scan</a>
+        </div>
+      </div>
+      <div class="tiles">
+        <div class="tile rv">
+          <div class="tl2">Security score</div>
+          <div class="tv">83 <span class="delta">▲ 4 vs last scan</span></div>
+          <div class="ringwrap">
+            <svg width="52" height="52" viewBox="0 0 52 52">
+              <circle cx="26" cy="26" r="21" fill="none" stroke="rgba(236,229,216,.1)" stroke-width="4"/>
+              <circle class="csring" cx="26" cy="26" r="21" fill="none" stroke="#7DC98F" stroke-width="4"
+                stroke-dasharray="131.9" stroke-dashoffset="131.9" data-score="83" transform="rotate(-90 26 26)"/>
+            </svg>
+          </div>
+          <div class="foot">LOW RISK · LAST SCAN 07/02</div>
+        </div>
+        <div class="tile rv" style="--d:.05s">
+          <div class="tl2">Open findings</div>
+          <div class="tv">9 <small>2 MED · 7 LOW</small></div>
+          <div class="sevbar" aria-hidden="true">
+            <i style="flex:2;background:var(--med)"></i>
+            <i style="flex:7;background:var(--low)"></i>
+          </div>
+          <div class="foot">0 CRITICAL · 0 HIGH</div>
+        </div>
+        <div class="tile rv" style="--d:.1s">
+          <div class="tl2">Scans — 14 days</div>
+          <div class="tv">6 <small>2 COMPLETED</small></div>
+          <svg class="spark" width="120" height="26" viewBox="0 0 120 26" aria-hidden="true">
+            <polyline points="0,20 20,16 40,21 60,10 80,13 100,6 118,8"/>
+            <circle cx="118" cy="8" r="2.5"/>
+          </svg>
+          <div class="foot">NEXT WATCH RE-SCAN IN 03:12:44</div>
+        </div>
+        <div class="tile rv" style="--d:.15s">
+          <div class="tl2">Credits</div>
+          <div class="tv">100 <small>FREE TIER</small></div>
+          <div class="usebar"><i style="width:58%"></i></div>
+          <div class="foot">1,360 USED THIS CYCLE</div>
+        </div>
+      </div>
+      <div class="cs-sec rv">
+        <div class="cs-sechead">
+          <h3>Recent scans</h3>
+          <div class="right"><span class="cs-est">SHOWING 6 OF 6</span></div>
+        </div>
+        <div style="overflow-x:auto">
+        <table class="cs-table">
+          <thead><tr>
+            <th>Status</th><th>Specimen</th><th>Date</th><th>Score</th>
+            <th>C</th><th>H</th><th>M</th><th>L</th><th>Depth</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="st ok"><i></i>COMPLETE</span></td>
+              <td class="name">1Earth / EarthToken.sol</td><td>07/02/26</td>
+              <td class="scoren" style="color:var(--pass)">87</td>
+              <td>0</td><td>0</td><td style="color:var(--med)">1</td><td style="color:var(--low)">1</td>
+              <td>COMPLETE</td>
+            </tr>
+            <tr>
+              <td><span class="st run"><i></i>SCANNING</span></td>
+              <td class="name">1Earth / Treasury.sol</td><td>07/17/26</td>
+              <td style="color:var(--bone3)">layer 2/3 · path 1,847</td>
+              <td>–</td><td>–</td><td>–</td><td>–</td>
+              <td>DEEP</td>
+            </tr>
+            <tr>
+              <td><span class="st ok"><i></i>COMPLETE</span></td>
+              <td class="name">1Earth / EarthToken.sol</td><td>06/17/26</td>
+              <td class="scoren" style="color:var(--pass)">78</td>
+              <td>0</td><td>0</td><td style="color:var(--med)">1</td><td style="color:var(--low)">6</td>
+              <td>COMPLETE</td>
+            </tr>
+            <tr>
+              <td><span class="st fail"><i></i>FAILED</span></td>
+              <td class="name">1Earth / EarthToken.sol</td><td>06/17/26</td>
+              <td style="color:var(--bone3)">compiler mismatch</td>
+              <td>–</td><td>–</td><td>–</td><td>–</td>
+              <td>QUICK</td>
+            </tr>
+            <tr>
+              <td><span class="st ok"><i></i>COMPLETE</span></td>
+              <td class="name">demo / NovaVault.sol</td><td>06/12/26</td>
+              <td class="scoren" style="color:var(--high)">58</td>
+              <td style="color:var(--crit)">1</td><td style="color:var(--high)">1</td>
+              <td style="color:var(--med)">1</td><td style="color:var(--low)">1</td>
+              <td>COMPLETE</td>
+            </tr>
+            <tr>
+              <td><span class="st fail"><i></i>FAILED</span></td>
+              <td class="name">1Earth / EarthToken.sol</td><td>06/17/26</td>
+              <td style="color:var(--bone3)">timeout — retried</td>
+              <td>–</td><td>–</td><td>–</td><td>–</td>
+              <td>QUICK</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="cs-sec rv">
+        <div class="cs-sechead"><h3>Start a scan</h3></div>
+        <div class="cs-new">
+          <button class="srcopt sel">
+            <div class="si">⌘</div>
+            <h4>Paste code</h4>
+            <p>Drop Solidity straight into the editor. Fastest loop while developing.</p>
+          </button>
+          <button class="srcopt">
+            <div class="si">⇪</div>
+            <h4>Upload .sol</h4>
+            <p>Single files or a zipped project — imports resolved automatically.</p>
+          </button>
+          <button class="srcopt">
+            <div class="si">◎</div>
+            <h4>From explorer</h4>
+            <p>Point at any verified Etherscan address. We pull the source.</p>
+          </button>
+        </div>
+        <div class="cs-newfoot">
+          <div class="tierpick">
+            <button>Quick · 10</button>
+            <button class="on">Complete · 20</button>
+            <button>Deep · 180</button>
+          </div>
+          <span class="cs-est" id="csest">EST. <b>~45 MIN</b> · <b>20 CREDITS</b> — COVERED BY FREE TIER</span>
+          <a class="btn primary small" href="#/console">Queue scan →</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>
+
+<!-- ================================================================
+     REPORT
+================================================================= -->
+<section data-route="report" class="paperworld">
+  <div class="rp">
+    <div class="container">
+      <article class="rp-doc">
+        <div class="rp-stamp">AUDITBASE*</div>
+        <div class="rp-mast">
+          <span class="brand ink">Auditbase<span class="ast red">*</span></span>
+          <div class="rid">SECURITY ASSESSMENT · AB-2607-NV<br>GENERATED 12 JUNE 2026 · ENGINE v3.2</div>
+        </div>
+        <h1>NovaVault Protocol</h1>
+        <p class="rpsub">154 LOC · SOLIDITY 0.8.19 · COMMIT 9F3AB2 · DEPTH: COMPLETE · 12M 41S</p>
+        <div class="rp-verdict">
+          <svg class="ring" width="86" height="86" viewBox="0 0 86 86" aria-label="Score 58 of 100">
+            <circle cx="43" cy="43" r="36" fill="none" stroke="rgba(25,22,17,.12)" stroke-width="5"/>
+            <circle class="csring" cx="43" cy="43" r="36" fill="none" stroke="#C05621" stroke-width="5"
+              stroke-dasharray="226.2" stroke-dashoffset="226.2" data-score="58" transform="rotate(-90 43 43)"/>
+            <text x="43" y="50" text-anchor="middle" font-size="24">58</text>
+          </svg>
+          <div>
+            <div class="vlab">Security score — 58/100</div>
+            <div class="vv">Elevated risk</div>
+          </div>
+          <div class="vsevs">
+            <div class="vsev hot"><b>1</b><span>CRIT</span></div>
+            <div class="vsev"><b>1</b><span>HIGH</span></div>
+            <div class="vsev"><b>1</b><span>MED</span></div>
+            <div class="vsev"><b>1</b><span>LOW</span></div>
+            <div class="vsev"><b>0</b><span>INFO</span></div>
+          </div>
+        </div>
+        <h5>Executive summary</h5>
+        <p class="prose">The Auditbase engine conducted a comprehensive security review of the
+          NovaVault Protocol, focusing on correctness, authorization, and externally observable
+          behavior across the vault boundary. The review covered permissioning paths, state
+          mutation ordering, oracle consumption, and asset flows through deposits and withdrawals.</p>
+        <p class="prose">One critical-severity defect was confirmed: <span class="redline">the
+          withdrawal path performs an external call before updating internal accounting</span>,
+          permitting classic re-entry and drainage of pooled funds. A proof-of-concept exploit
+          was generated and validated in simulation. Remediation is a two-line reorder; we
+          recommend blocking deployment until C-01 and H-01 are resolved.</p>
+        <h5>Findings — 4</h5>
+        <div class="rf crit">
+          <div class="rfhead">
+            <span class="rftag">C-01 · CRITICAL</span>
+            <h3>Reentrancy in withdraw() — state update after external call</h3>
+            <span class="conf">Confidence 90% · Very likely</span>
+          </div>
+          <p class="rfbody">The function transfers ETH to <code>msg.sender</code> via a low-level
+            call before decrementing the caller's share balance. A malicious receiver contract can
+            re-enter <code>withdraw()</code> in its fallback and repeat the drain until the
+            vault is empty. The generated PoC extracts the full pooled balance in a single
+            transaction.</p>
+          <div class="rp-code">
+            <div class="cl"><span class="no">11</span><span class="cd"><span class="k">function</span> withdraw(<span class="t">uint256</span> amount) <span class="k">external</span> {</span></div>
+            <div class="cl"><span class="no">12</span><span class="cd">    <span class="k">require</span>(shares[msg.sender] &gt;= amount, <span class="s">"insufficient"</span>);</span></div>
+            <div class="cl hot"><span class="no">13</span><span class="cd">    (<span class="t">bool</span> ok, ) = msg.sender.call{value: amount}(<span class="s">""</span>);</span></div>
+            <div class="cl"><span class="no">14</span><span class="cd">    <span class="k">require</span>(ok, <span class="s">"transfer failed"</span>);</span></div>
+            <div class="cl hot"><span class="no">15</span><span class="cd">    shares[msg.sender] -= amount;</span></div>
+            <div class="cl"><span class="no">16</span><span class="cd">}</span></div>
+          </div>
+          <p class="rp-anno">external interaction (L13) precedes effect (L15) — checks-effects-interactions violated</p>
+          <div class="fix"><b>RECOMMENDATION</b>Move the share decrement above the external call, or
+            guard the function with a reentrancy lock. Both fixes validated against the PoC.</div>
+        </div>
+        <div class="rf high">
+          <div class="rfhead">
+            <span class="rftag">H-01 · HIGH</span>
+            <h3>Oracle price accepted without staleness or round validation</h3>
+            <span class="conf">Confidence 84% · Likely</span>
+          </div>
+          <p class="rfbody">latestRoundData() is consumed without checking <code>updatedAt</code>
+            or <code>answeredInRound</code>. During oracle outages the vault will price
+            positions against stale data, enabling under-collateralized exits during volatility.</p>
+          <div class="fix"><b>RECOMMENDATION</b>Bound acceptable staleness (e.g. 30 minutes for this
+            feed), verify round completeness, and revert on violation.</div>
+        </div>
+        <div class="rf med">
+          <div class="rfhead">
+            <span class="rftag">M-01 · MEDIUM</span>
+            <h3>setGuardian() lacks access control</h3>
+            <span class="conf">Confidence 96% · Very likely</span>
+          </div>
+          <p class="rfbody">Any address may replace the guardian and thereby control pause
+            behavior. Intent inferred from documentation ("only the guardian pauses") conflicts
+            with implementation — flagged by the adversarial layer, invisible to pattern matching.</p>
+          <div class="fix"><b>RECOMMENDATION</b>Restrict to owner or current guardian via modifier.</div>
+        </div>
+        <div class="rf low">
+          <div class="rfhead">
+            <span class="rftag">L-01 · LOW</span>
+            <h3>Floating pragma ^0.8.19</h3>
+            <span class="conf">Confidence 99% · Certain</span>
+          </div>
+          <p class="rfbody">Contracts should be deployed with a pinned compiler version to rule
+            out behavioral drift between builds.</p>
+          <div class="fix"><b>RECOMMENDATION</b>Pin to a tested release, e.g. 0.8.19 exactly.</div>
+        </div>
+        <h5>Compliance — MiCA alignment extract</h5>
+        <table class="mica">
+          <thead><tr><th>Article 68 requirement</th><th>Status</th><th>Evidence</th></tr></thead>
+          <tbody>
+            <tr><td>ICT risk management framework</td><td class="ok">PASS</td><td>§4.1 — layered analysis on every release</td></tr>
+            <tr><td>Incident detection readiness</td><td class="ok">PASS</td><td>§4.3 — continuous monitoring enabled</td></tr>
+            <tr><td>Resilience testing</td><td class="warn">PARTIAL</td><td>C-01 open — retest after remediation</td></tr>
+            <tr><td>Documentation &amp; audit trail</td><td class="ok">PASS</td><td>this report · hash-sealed</td></tr>
+          </tbody>
+        </table>
+        <div class="rp-sig">
+          <span>GENERATED BY AUDITBASE ENGINE v3.2</span>
+          <span class="hash">sha256: 7f3c…a91e · verify at auditbase.com/verify</span>
+          <span class="soc">SOC 2 TYPE II</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     DETECTORS
+================================================================= -->
+<section data-route="detectors">
+  <div class="dt">
+    <div class="container">
+      <div class="dt-head">
+        <p class="eyebrow">The detector base</p>
+        <h2 class="h-sec" style="margin-bottom:0">Every check we run.</h2>
+        <p class="sub" style="margin-top:14px">247 detectors across three analysis layers.
+          Filter by severity, search by name — new patterns ship weekly.</p>
+        <div class="dt-tools">
+          <input class="dt-search" id="dtsearch" type="search" placeholder="Search detectors — try “reentrancy”, “oracle”, “delegatecall”…" aria-label="Search detectors">
+          <div class="fbar" id="dtfilter">
+            <button class="fbtn on" data-f="all">All</button>
+            <button class="fbtn" data-f="crit">Critical</button>
+            <button class="fbtn" data-f="high">High</button>
+            <button class="fbtn" data-f="med">Medium</button>
+            <button class="fbtn" data-f="low">Low</button>
+            <button class="fbtn" data-f="info">Info</button>
+            <button class="fbtn" data-f="gas">Gas</button>
+          </div>
+        </div>
+      </div>
+      <div class="dt-count" id="dtcount"></div>
+      <div class="dt-grid" id="dtgrid"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="fgrid">
+      <div class="fbrand">
+        <span class="brand">Auditbase<span class="ast">*</span></span>
+        <p>Static analysis, symbolic execution and adversarial AI — institutional-grade
+           smart-contract security in hours, not months.</p>
+      </div>
+      <div class="fcol">
+        <h6>Product</h6>
+        <a href="#/#engine">Engine</a>
+        <a href="#/detectors">Detectors</a>
+        <a href="#/#monitoring">Monitoring</a>
+        <a href="#/#pricing">Pricing</a>
+        <a href="#/console">Console</a>
+      </div>
+      <div class="fcol">
+        <h6>Resources</h6>
+        <a href="#/report">Sample report</a>
+        <a href="#/">Documentation</a>
+        <a href="#/">API reference</a>
+        <a href="#/">Changelog</a>
+      </div>
+      <div class="fcol">
+        <h6>Company</h6>
+        <a href="#/">About</a>
+        <a href="#/">Security</a>
+        <a href="#/">Terms</a>
+        <a href="#/">Privacy</a>
+      </div>
+    </div>
+    <div class="fbottom">
+      <span>© 2026 Auditbase</span>
+      <span>Austin, TX</span>
+      <span class="sp"></span>
+      <span>SOC 2 Type II</span>
+      <span>MiCA-ready</span>
+    </div>
+  </div>
+  <div class="fwm" aria-hidden="true">Auditbase*</div>
+</footer>
+
+</body>
+</html>
