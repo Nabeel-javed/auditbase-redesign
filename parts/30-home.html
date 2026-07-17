@@ -1,0 +1,332 @@
+<section data-route="home">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="regs" aria-hidden="true">
+      <span class="r1">✛ AB/26 — SPEC 001</span><span class="r2">X:1264 · GRID 96</span>
+      <span class="r3">STATIC × SYMBOLIC × AI</span><span class="r4">AUSTIN, TX ✛</span>
+    </div>
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow rv">Smart contract security — in hours, not months</p>
+        <h1 class="rv" style="--d:.06s">
+          <span class="ln">Every path.</span>
+          <span class="ln">Every state.</span>
+          <span class="ln"><em class="mark">Every exploit.<svg viewBox="0 0 100 8" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M1 5 Q 12 1, 25 4 T 50 4 T 75 4 T 99 3"/></svg></em><span class="supnote">[C-01]</span></span>
+        </h1>
+        <p class="sub rv" style="--d:.12s">Auditbase reads your Solidity the way an attacker does —
+          247 detectors, symbolic execution over every reachable state, and an adversarial AI
+          that drafts the proof-of-concept. The report lands in hours, not months.</p>
+        <div class="hero-ctas rv" style="--d:.18s">
+          <a class="btn primary" href="#/console">Run first scan — free<span class="arr">→</span></a>
+          <a class="btn" href="#/report">Read a sample report</a>
+        </div>
+        <p class="hero-meta rv" style="--d:.24s"><b>100 credits</b> on signup · no card · <b>SOC 2</b> Type II</p>
+      </div>
+
+      <div class="scanwrap rv" style="--d:.15s">
+        <div class="scanpanel corners"><i></i><i></i><i></i><i></i>
+          <div class="scanhead">
+            <span class="led" id="scanled"></span>
+            <span class="fname">specimen/NovaVault.sol</span>
+            <span class="fmeta">154 LOC · 0.8.19<br>commit 9f3ab2</span>
+          </div>
+          <div class="codearea" id="codearea">
+            <div class="lamp" id="lamp"></div>
+            <!-- code lines injected by JS -->
+          </div>
+          <div class="scanfoot">
+            <span class="phase" id="phase">STANDBY</span>
+            <span class="pathn" id="pathn"></span>
+          </div>
+          <div class="scancard" id="scancard">
+            <svg class="ring" width="62" height="62" viewBox="0 0 62 62" aria-hidden="true">
+              <circle cx="31" cy="31" r="26" fill="none" stroke="rgba(25,22,17,.14)" stroke-width="4"/>
+              <circle id="cardring" cx="31" cy="31" r="26" fill="none" stroke="#C05621" stroke-width="4"
+                stroke-dasharray="163.4" stroke-dashoffset="163.4" transform="rotate(-90 31 31)"/>
+              <text id="cardscore" x="31" y="38" text-anchor="middle">0</text>
+            </svg>
+            <div>
+              <h4>NovaVault Protocol</h4>
+              <div class="cardmeta">AB-2607-NV · 4 findings · 12m 41s</div>
+              <div class="verdict">1 CRITICAL — WITHDRAW() RE-ENTERABLE</div>
+            </div>
+            <div class="stamp" id="stamp">ELEVATED<br>RISK</div>
+          </div>
+        </div>
+        <div class="fchips" id="fchips"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="mq" aria-hidden="true">
+    <div class="mq-track" id="mqtrack">
+      <span>SOLIDITY</span><span>VYPER</span><span>MOVE</span><span>CAIRO</span><span>RUST</span>
+      <span><b>/</b>ETHEREUM</span><span>BASE</span><span>ARBITRUM</span><span>OPTIMISM</span>
+      <span>POLYGON</span><span>BNB CHAIN</span><span>AVALANCHE</span><span><b>/</b>ERC-20</span>
+      <span>ERC-4626</span><span>ERC-721</span><span>PROXIES</span><span>DIAMONDS</span>
+    </div>
+  </div>
+
+  <!-- ============ STATS ============ -->
+  <div class="stats">
+    <div class="container stats-grid">
+      <div class="stat rv"><div class="n">$<span data-count="50">0</span>B<sup>+</sup></div><div class="l">TVL analyzed</div></div>
+      <div class="stat rv" style="--d:.08s"><div class="n"><span data-count="500">0</span><sup>+</sup></div><div class="l">Protocols scanned</div></div>
+      <div class="stat rv" style="--d:.16s"><div class="n"><span data-count="247">0</span></div><div class="l">Live detectors</div></div>
+      <div class="stat rv" style="--d:.24s"><div class="n">&lt;<span data-count="12">0</span>h</div><div class="l">Median turnaround</div></div>
+    </div>
+  </div>
+
+  <!-- ============ ENGINE ============ -->
+  <div class="engine" id="engine">
+    <div class="container">
+      <p class="eyebrow rv">The analysis engine</p>
+      <h2 class="h-sec rv" style="--d:.06s">Three passes. Zero <em class="mark">benefit of the doubt.<svg viewBox="0 0 100 8" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M1 4 Q 15 1, 30 5 T 60 4 T 99 4"/></svg></em></h2>
+      <p class="sub rv" style="--d:.12s">Each layer catches what the previous one can't see. Together they
+        cover the known, the reachable, and the merely plausible.</p>
+
+      <div style="margin-top:56px">
+        <div class="layer rv">
+          <div class="lno">01<small>SECONDS</small></div>
+          <div>
+            <h3>Static sweep</h3>
+            <p>247 detectors run the known-vulnerability battery — reentrancy shapes, access-control
+               gaps, oracle misuse, unchecked calls — across every line of every contract.</p>
+          </div>
+          <div class="viz viz-static" id="vizstatic" aria-hidden="true"></div>
+        </div>
+        <div class="layer rv">
+          <div class="lno">02<small>MINUTES</small></div>
+          <div>
+            <h3>Symbolic execution</h3>
+            <p>A constraint solver walks every reachable state and branch — the paths a human
+               review never has time to visit. State explosion is our problem, not yours.</p>
+          </div>
+          <div class="viz viz-sym" aria-hidden="true">
+            <svg viewBox="0 0 320 118" preserveAspectRatio="none">
+              <path d="M10 59 H70 M70 59 C110 59 110 26 150 26 H200 M200 26 C240 26 240 12 280 12 H310"/>
+              <path d="M200 26 C240 26 240 44 280 44 H310"/>
+              <path d="M70 59 C110 59 110 92 150 92 H200 M200 92 C240 92 240 106 280 106 H310"/>
+              <path class="bad" d="M200 92 C240 92 240 76 280 76 H310"/>
+            </svg>
+          </div>
+        </div>
+        <div class="layer rv">
+          <div class="lno">03<small>THE HOUR</small></div>
+          <div>
+            <h3>Adversarial AI</h3>
+            <p>An agent argues with your code — intent versus implementation — then drafts the
+               proof-of-concept. Logic bugs and economic exploits, not just patterns.</p>
+          </div>
+          <div class="viz viz-ai" aria-hidden="true">
+            <div class="ln1">&gt; reading intent: “only the guardian pauses”</div>
+            <div class="ln1">&gt; found: setGuardian() has no modifier</div>
+            <div>&gt; <span id="aitype"></span><span class="caret"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ DETECTOR WALL ============ -->
+  <div class="wallsec" id="detectors">
+    <div class="container">
+      <div class="wallhead">
+        <div>
+          <p class="eyebrow rv">The detector base</p>
+          <h2 class="h-sec rv" style="--d:.06s;margin-bottom:0">247 detectors, drawn to scale.</h2>
+          <p class="sub rv" style="--d:.1s;margin-top:14px">Every cell below is a real check that runs on
+            every scan. Hover any of them. New patterns ship weekly.</p>
+        </div>
+        <div class="fbar rv" style="--d:.14s" id="wallfilter">
+          <button class="fbtn on" data-f="all">All</button>
+          <button class="fbtn" data-f="crit">Critical</button>
+          <button class="fbtn" data-f="high">High</button>
+          <button class="fbtn" data-f="med">Medium</button>
+          <button class="fbtn" data-f="low">Low</button>
+          <button class="fbtn" data-f="info">Info</button>
+          <button class="fbtn" data-f="gas">Gas</button>
+        </div>
+      </div>
+      <div class="wall rv" id="wall" style="--d:.1s"></div>
+      <div class="wallfoot rv">
+        <span id="wallcount">247 / 247 SHOWN</span>
+        <a class="btn small" href="#/detectors">Browse the catalog<span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ WORKFLOW ============ -->
+  <div class="flow" id="how">
+    <div class="container">
+      <p class="eyebrow rv">Workflow</p>
+      <h2 class="h-sec rv" style="--d:.06s">Paste to verdict in four moves.</h2>
+      <div class="steps">
+        <div class="step rv">
+          <div class="sn">STEP 01</div><h3>Provide</h3>
+          <p>Point us at the code — any way you like.</p>
+          <div class="chips"><span>UPLOAD .SOL</span><span>PASTE</span><span>ETHERSCAN ADDR</span></div>
+        </div>
+        <div class="step rv" style="--d:.08s">
+          <div class="sn">STEP 02</div><h3>Pick depth</h3>
+          <p>Quick sanity check to deep research — priced per scan, not per seat.</p>
+          <div class="chips"><span>10 CR</span><span>20 CR</span><span>180 CR</span></div>
+        </div>
+        <div class="step rv" style="--d:.16s">
+          <div class="sn">STEP 03</div><h3>Read</h3>
+          <p>Findings with confidence scores, PoCs, and fixes — plus an executive summary.</p>
+          <div class="chips"><span>PDF</span><span>MARKDOWN</span><span>API</span></div>
+        </div>
+        <div class="step rv" style="--d:.24s">
+          <div class="sn">STEP 04</div><h3>Watch</h3>
+          <p>Contracts re-scan as new exploit patterns land. Slack pages you first.</p>
+          <div class="chips"><span>RE-SCAN</span><span>SLACK</span><span>WEBHOOK</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PAPER BAND ============ -->
+  <div class="paperband paperworld" id="deliverable">
+    <div class="container pg">
+      <div>
+        <p class="eyebrow rv">The deliverable</p>
+        <h2 class="h-sec rv" style="--d:.06s">A report your board can actually read.</h2>
+        <p class="sub rv" style="--d:.12s">One scan, two audiences. Engineers get findings with
+          proofs-of-concept and line-level fixes. Boards, LPs and regulators get MiCA-aligned
+          matrices, quantified risk scores and an executive summary in plain language.</p>
+        <div class="plist rv" style="--d:.18s">
+          <div><b>MiCA</b>EU compliance matrix, generated per scan</div>
+          <div><b>SCORE</b>0–100 quantified risk, comparable across a portfolio</div>
+          <div><b>EXEC</b>summary written for non-engineers — no jargon walls</div>
+          <div><b>PoC</b>every finding proven, or it doesn't ship</div>
+        </div>
+        <div class="hero-ctas rv" style="--d:.24s">
+          <a class="btn primary" href="#/report">Open the sample report<span class="arr">→</span></a>
+        </div>
+      </div>
+      <div class="sheetwrap rv" style="--d:.1s">
+        <div class="sheet">
+          <div class="shhead">
+            <span class="t">Security Assessment</span>
+            <span class="id">AB-2607-NV · JULY 2026</span>
+          </div>
+          <h5>Executive summary</h5>
+          <p class="body">The Auditbase engine conducted a comprehensive review of the
+            <span class="redline">NovaVault Protocol</span>, covering authorization paths, state
+            mutation and asset flows. One critical-severity finding permits
+            <span class="redline">re-entry during withdrawal</span>; remediation is a two-line
+            reorder. Overall posture: elevated, recoverable.</p>
+          <h5>Findings</h5>
+          <div class="frow"><span class="ftag fc">C-01</span>Reentrancy in withdraw() — state after call<span style="margin-left:auto;color:var(--ink2)">90%</span></div>
+          <div class="frow"><span class="ftag fh">H-01</span>Oracle price accepted without staleness check<span style="margin-left:auto;color:var(--ink2)">84%</span></div>
+          <div class="frow"><span class="ftag fm">M-01</span>setGuardian() lacks access control<span style="margin-left:auto;color:var(--ink2)">96%</span></div>
+          <div class="frow" style="border-bottom:none"><span class="ftag fl">L-01</span>Floating pragma ^0.8.19<span style="margin-left:auto;color:var(--ink2)">99%</span></div>
+          <h5>MiCA Article 68 — extract</h5>
+          <table>
+            <tr><th>Requirement</th><th>Status</th><th>Evidence</th></tr>
+            <tr><td>ICT risk mgmt</td><td class="mica-ok">PASS</td><td>§4.1</td></tr>
+            <tr><td>Incident readiness</td><td class="mica-ok">PASS</td><td>§4.3</td></tr>
+            <tr><td>Resilience testing</td><td style="color:var(--highink);font-weight:700">PARTIAL</td><td>C-01</td></tr>
+          </table>
+          <div class="mnote" style="top:200px;right:-118px">state update after external call — classic. see C-01</div>
+          <div class="stamp2">4 FINDINGS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MONITORING ============ -->
+  <div class="mon" id="monitoring">
+    <div class="container mg">
+      <div class="rv">
+        <div class="term corners"><i></i><i></i><i></i><i></i>
+          <div class="termlines" id="termlines"></div>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow rv">Continuous monitoring</p>
+        <h2 class="h-sec rv" style="--d:.06s">Deployment isn't the finish line.</h2>
+        <p class="sub rv" style="--d:.12s">New exploit patterns land in the detector base weekly.
+          Contracts under watch re-scan automatically against every addition — and findings page
+          your team in Slack before they page you on-chain.</p>
+        <div class="hero-ctas rv" style="--d:.18s">
+          <a class="btn" href="#/console">See monitoring in console<span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PRICING ============ -->
+  <div class="pricing" id="pricing">
+    <div class="container">
+      <p class="eyebrow rv">Pricing</p>
+      <h2 class="h-sec rv" style="--d:.06s">Pay for depth. Not for seats.</h2>
+      <div class="tiers rv" style="--d:.1s">
+        <div class="tier">
+          <div class="tname">Quick check</div>
+          <div class="tprice">10</div><div class="tunit">credits / scan</div>
+          <p class="tdesc">The sanity pass while you build.</p>
+          <ul>
+            <li>Full 247-detector static sweep</li>
+            <li>Results in minutes</li>
+            <li>Severity-ranked findings</li>
+            <li class="no">PoC generation</li>
+            <li class="no">Custom instructions</li>
+          </ul>
+          <a class="btn" href="#/console">Start quick</a>
+        </div>
+        <div class="tier rec">
+          <div class="rectag">RECOMMENDED</div>
+          <div class="tname">Complete audit</div>
+          <div class="tprice">20</div><div class="tunit">credits / scan</div>
+          <p class="tdesc">The full three-layer interrogation.</p>
+          <ul>
+            <li>Static + symbolic + adversarial AI</li>
+            <li>30–60 minute turnaround</li>
+            <li>PoC generation on findings</li>
+            <li>Custom instructions</li>
+            <li>Compliance-ready report</li>
+          </ul>
+          <a class="btn" href="#/console">Run complete</a>
+        </div>
+        <div class="tier">
+          <div class="tname">Deep research</div>
+          <div class="tprice">180</div><div class="tunit">credits / scan</div>
+          <p class="tdesc">For the contracts that hold the money.</p>
+          <ul>
+            <li>2–24 hour exhaustive analysis</li>
+            <li>Highest accuracy tier</li>
+            <li>Economic-exploit modelling</li>
+            <li>PoC + fix validation</li>
+            <li>Report-grade documentation</li>
+          </ul>
+          <a class="btn" href="#/console">Go deep</a>
+        </div>
+      </div>
+      <div class="pfoot rv">
+        <span><b>100 credits free</b> on signup</span>
+        <span>subscribers pay <b>no platform fee</b></span>
+        <span>plans from <b>$49/mo</b></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FINAL CTA ============ -->
+  <div class="cta">
+    <div class="regs" aria-hidden="true">
+      <span class="r1">✛</span><span class="r2">✛</span><span class="r3">✛</span><span class="r4">✛</span>
+    </div>
+    <div class="container">
+      <h2 class="rv">Know <em class="mark">before they do.<svg viewBox="0 0 100 8" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M1 5 Q 14 1, 28 4 T 56 4 T 99 3"/></svg></em></h2>
+      <p class="sub rv" style="--d:.08s">First scan's on us — 100 credits, no card, verdict inside the hour.</p>
+      <div class="hero-ctas rv" style="--d:.14s">
+        <a class="btn primary" href="#/console">Run first scan — free<span class="arr">→</span></a>
+        <a class="btn" href="#/detectors">Browse 247 detectors</a>
+      </div>
+    </div>
+  </div>
+
+</section>

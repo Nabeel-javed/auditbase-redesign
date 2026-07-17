@@ -1,0 +1,126 @@
+<section data-route="report" class="paperworld">
+  <div class="rp">
+    <div class="container">
+      <article class="rp-doc">
+        <div class="rp-stamp">AUDITBASE*</div>
+        <div class="rp-mast">
+          <span class="brand">Auditbase<span class="ast" style="color:var(--redink)">*</span></span>
+          <div class="rid">SECURITY ASSESSMENT · AB-2607-NV<br>GENERATED 12 JUNE 2026 · ENGINE v3.2</div>
+        </div>
+
+        <h1>NovaVault Protocol</h1>
+        <p class="rpsub">154 LOC · SOLIDITY 0.8.19 · COMMIT 9F3AB2 · DEPTH: COMPLETE · 12M 41S</p>
+
+        <div class="rp-verdict">
+          <svg class="ring" width="86" height="86" viewBox="0 0 86 86" aria-label="Score 58 of 100">
+            <circle cx="43" cy="43" r="36" fill="none" stroke="rgba(25,22,17,.12)" stroke-width="5"/>
+            <circle class="csring" cx="43" cy="43" r="36" fill="none" stroke="#C05621" stroke-width="5"
+              stroke-dasharray="226.2" stroke-dashoffset="226.2" data-score="58" transform="rotate(-90 43 43)"/>
+            <text x="43" y="50" text-anchor="middle" font-size="24">58</text>
+          </svg>
+          <div>
+            <div class="vlab">Security score — 58/100</div>
+            <div class="vv">Elevated risk</div>
+          </div>
+          <div class="vsevs">
+            <div class="vsev hot"><b>1</b><span>CRIT</span></div>
+            <div class="vsev"><b>1</b><span>HIGH</span></div>
+            <div class="vsev"><b>1</b><span>MED</span></div>
+            <div class="vsev"><b>1</b><span>LOW</span></div>
+            <div class="vsev"><b>0</b><span>INFO</span></div>
+          </div>
+        </div>
+
+        <h5>Executive summary</h5>
+        <p class="prose">The Auditbase engine conducted a comprehensive security review of the
+          NovaVault Protocol, focusing on correctness, authorization, and externally observable
+          behavior across the vault boundary. The review covered permissioning paths, state
+          mutation ordering, oracle consumption, and asset flows through deposits and withdrawals.</p>
+        <p class="prose">One critical-severity defect was confirmed: <span class="redline">the
+          withdrawal path performs an external call before updating internal accounting</span>,
+          permitting classic re-entry and drainage of pooled funds. A proof-of-concept exploit
+          was generated and validated in simulation. Remediation is a two-line reorder; we
+          recommend blocking deployment until C-01 and H-01 are resolved.</p>
+
+        <h5>Findings — 4</h5>
+
+        <div class="rf crit">
+          <div class="rfhead">
+            <span class="rftag">C-01 · CRITICAL</span>
+            <h3>Reentrancy in withdraw() — state update after external call</h3>
+            <span class="conf">Confidence 90% · Very likely</span>
+          </div>
+          <p class="rfbody">The function transfers ETH to <code style="font-size:.85em">msg.sender</code> via a low-level
+            call before decrementing the caller's share balance. A malicious receiver contract can
+            re-enter <code style="font-size:.85em">withdraw()</code> in its fallback and repeat the drain until the
+            vault is empty. The generated PoC extracts the full pooled balance in a single
+            transaction.</p>
+          <div class="rp-code">
+            <div class="cl"><span class="no">11</span><span class="cd"><span class="k">function</span> withdraw(<span class="t">uint256</span> amount) <span class="k">external</span> {</span></div>
+            <div class="cl"><span class="no">12</span><span class="cd">    <span class="k">require</span>(shares[msg.sender] &gt;= amount, <span class="s">"insufficient"</span>);</span></div>
+            <div class="cl hot"><span class="no">13</span><span class="cd">    (<span class="t">bool</span> ok, ) = msg.sender.call{value: amount}(<span class="s">""</span>);</span></div>
+            <div class="cl"><span class="no">14</span><span class="cd">    <span class="k">require</span>(ok, <span class="s">"transfer failed"</span>);</span></div>
+            <div class="cl hot"><span class="no">15</span><span class="cd">    shares[msg.sender] -= amount;</span></div>
+            <div class="cl"><span class="no">16</span><span class="cd">}</span></div>
+          </div>
+          <p class="rp-anno">external interaction (L13) precedes effect (L15) — checks-effects-interactions violated</p>
+          <div class="fix"><b>RECOMMENDATION</b>Move the share decrement above the external call, or
+            guard the function with a reentrancy lock. Both fixes validated against the PoC.</div>
+        </div>
+
+        <div class="rf high">
+          <div class="rfhead">
+            <span class="rftag">H-01 · HIGH</span>
+            <h3>Oracle price accepted without staleness or round validation</h3>
+            <span class="conf">Confidence 84% · Likely</span>
+          </div>
+          <p class="rfbody">latestRoundData() is consumed without checking <code style="font-size:.85em">updatedAt</code>
+            or <code style="font-size:.85em">answeredInRound</code>. During oracle outages the vault will price
+            positions against stale data, enabling under-collateralized exits during volatility.</p>
+          <div class="fix"><b>RECOMMENDATION</b>Bound acceptable staleness (e.g. 30 minutes for this
+            feed), verify round completeness, and revert on violation.</div>
+        </div>
+
+        <div class="rf med">
+          <div class="rfhead">
+            <span class="rftag">M-01 · MEDIUM</span>
+            <h3>setGuardian() lacks access control</h3>
+            <span class="conf">Confidence 96% · Very likely</span>
+          </div>
+          <p class="rfbody">Any address may replace the guardian and thereby control pause
+            behavior. Intent inferred from documentation ("only the guardian pauses") conflicts
+            with implementation — flagged by the adversarial layer, invisible to pattern matching.</p>
+          <div class="fix"><b>RECOMMENDATION</b>Restrict to owner or current guardian via modifier.</div>
+        </div>
+
+        <div class="rf low">
+          <div class="rfhead">
+            <span class="rftag">L-01 · LOW</span>
+            <h3>Floating pragma ^0.8.19</h3>
+            <span class="conf">Confidence 99% · Certain</span>
+          </div>
+          <p class="rfbody">Contracts should be deployed with a pinned compiler version to rule
+            out behavioral drift between builds.</p>
+          <div class="fix"><b>RECOMMENDATION</b>Pin to a tested release, e.g. 0.8.19 exactly.</div>
+        </div>
+
+        <h5>Compliance — MiCA alignment extract</h5>
+        <table class="mica">
+          <thead><tr><th>Article 68 requirement</th><th>Status</th><th>Evidence</th></tr></thead>
+          <tbody>
+            <tr><td>ICT risk management framework</td><td class="ok">PASS</td><td>§4.1 — layered analysis on every release</td></tr>
+            <tr><td>Incident detection readiness</td><td class="ok">PASS</td><td>§4.3 — continuous monitoring enabled</td></tr>
+            <tr><td>Resilience testing</td><td class="warn">PARTIAL</td><td>C-01 open — retest after remediation</td></tr>
+            <tr><td>Documentation &amp; audit trail</td><td class="ok">PASS</td><td>this report · hash-sealed</td></tr>
+          </tbody>
+        </table>
+
+        <div class="rp-sig">
+          <span>GENERATED BY AUDITBASE ENGINE v3.2</span>
+          <span class="hash">sha256: 7f3c…a91e · verify at auditbase.com/verify</span>
+          <span style="margin-left:auto">SOC 2 TYPE II</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,157 @@
+<section data-route="console">
+  <div class="cs-wrap">
+    <aside class="cs-side">
+      <h6>Console</h6>
+      <a class="on" href="#/console">Overview</a>
+      <a href="#/console">Scans <span class="k">6</span></a>
+      <a href="#/console">Monitoring <span class="k">12</span></a>
+      <a href="#/console">Compliance</a>
+      <a href="#/console">Credits</a>
+      <h6>Org</h6>
+      <a href="#/console">Team</a>
+      <a href="#/console">Settings</a>
+    </aside>
+
+    <main class="cs-main">
+      <div class="cs-tophead">
+        <div>
+          <div class="crumb">1EARTH — PRODUCTION</div>
+          <h2>Overview</h2>
+        </div>
+        <div class="right">
+          <span class="cs-cred">⚡ <b>100</b> CREDITS</span>
+          <a class="btn primary small" href="#/console">+ New scan</a>
+        </div>
+      </div>
+
+      <div class="tiles">
+        <div class="tile rv">
+          <div class="tl2">Security score</div>
+          <div class="tv">83 <span class="delta">▲ 4 vs last scan</span></div>
+          <div class="ringwrap">
+            <svg width="52" height="52" viewBox="0 0 52 52">
+              <circle cx="26" cy="26" r="21" fill="none" stroke="var(--g3)" stroke-width="4"/>
+              <circle class="csring" cx="26" cy="26" r="21" fill="none" stroke="var(--pass)" stroke-width="4"
+                stroke-dasharray="131.9" stroke-dashoffset="131.9" data-score="83" transform="rotate(-90 26 26)"/>
+            </svg>
+          </div>
+          <div class="foot">LOW RISK · LAST SCAN 07/02</div>
+        </div>
+        <div class="tile rv" style="--d:.06s">
+          <div class="tl2">Open findings</div>
+          <div class="tv">9 <small>2 MED · 7 LOW</small></div>
+          <div class="sevbar" aria-hidden="true">
+            <i style="flex:2;background:var(--med)"></i>
+            <i style="flex:7;background:var(--low)"></i>
+          </div>
+          <div class="foot">0 CRITICAL · 0 HIGH</div>
+        </div>
+        <div class="tile rv" style="--d:.12s">
+          <div class="tl2">Scans — 14 days</div>
+          <div class="tv">6 <small>2 COMPLETED</small></div>
+          <svg class="spark" width="120" height="26" viewBox="0 0 120 26" aria-hidden="true">
+            <polyline points="0,20 20,16 40,21 60,10 80,13 100,6 118,8"/>
+            <circle cx="118" cy="8" r="2.5"/>
+          </svg>
+          <div class="foot">NEXT WATCH RE-SCAN IN 03:12:44</div>
+        </div>
+        <div class="tile rv" style="--d:.18s">
+          <div class="tl2">Credits</div>
+          <div class="tv">100 <small>FREE TIER</small></div>
+          <div class="usebar"><i style="width:58%"></i></div>
+          <div class="foot">1,360 USED THIS CYCLE</div>
+        </div>
+      </div>
+
+      <div class="cs-sec rv">
+        <div class="cs-sechead">
+          <h3>Recent scans</h3>
+          <div class="right"><span class="cs-est">SHOWING 6 OF 6</span></div>
+        </div>
+        <div style="overflow-x:auto">
+        <table class="cs-table">
+          <thead><tr>
+            <th>Status</th><th>Specimen</th><th>Date</th><th>Score</th>
+            <th>C</th><th>H</th><th>M</th><th>L</th><th>Depth</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="st ok"><i></i>COMPLETE</span></td>
+              <td class="name">1Earth / EarthToken.sol</td><td>07/02/26</td>
+              <td class="scoren" style="color:var(--pass)">87</td>
+              <td>0</td><td>0</td><td style="color:var(--med)">1</td><td style="color:var(--low)">1</td>
+              <td>COMPLETE</td>
+            </tr>
+            <tr>
+              <td><span class="st run"><i></i>SCANNING</span></td>
+              <td class="name">1Earth / Treasury.sol</td><td>07/17/26</td>
+              <td style="color:var(--bone3)">layer 2/3 · path 1,847</td>
+              <td>–</td><td>–</td><td>–</td><td>–</td>
+              <td>DEEP</td>
+            </tr>
+            <tr>
+              <td><span class="st ok"><i></i>COMPLETE</span></td>
+              <td class="name">1Earth / EarthToken.sol</td><td>06/17/26</td>
+              <td class="scoren" style="color:var(--pass)">78</td>
+              <td>0</td><td>0</td><td style="color:var(--med)">1</td><td style="color:var(--low)">6</td>
+              <td>COMPLETE</td>
+            </tr>
+            <tr>
+              <td><span class="st fail"><i></i>FAILED</span></td>
+              <td class="name">1Earth / EarthToken.sol</td><td>06/17/26</td>
+              <td style="color:var(--bone3)">compiler mismatch</td>
+              <td>–</td><td>–</td><td>–</td><td>–</td>
+              <td>QUICK</td>
+            </tr>
+            <tr>
+              <td><span class="st ok"><i></i>COMPLETE</span></td>
+              <td class="name">demo / NovaVault.sol</td><td>06/12/26</td>
+              <td class="scoren" style="color:var(--high)">58</td>
+              <td style="color:var(--crit)">1</td><td style="color:var(--high)">1</td>
+              <td style="color:var(--med)">1</td><td style="color:var(--low)">1</td>
+              <td>COMPLETE</td>
+            </tr>
+            <tr>
+              <td><span class="st fail"><i></i>FAILED</span></td>
+              <td class="name">1Earth / EarthToken.sol</td><td>06/17/26</td>
+              <td style="color:var(--bone3)">timeout — retried</td>
+              <td>–</td><td>–</td><td>–</td><td>–</td>
+              <td>QUICK</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="cs-sec rv">
+        <div class="cs-sechead"><h3>Start a scan</h3></div>
+        <div class="cs-new">
+          <button class="srcopt sel">
+            <div class="si">⌘</div>
+            <h4>Paste code</h4>
+            <p>Drop Solidity straight into the editor. Fastest loop while developing.</p>
+          </button>
+          <button class="srcopt">
+            <div class="si">⇪</div>
+            <h4>Upload .sol</h4>
+            <p>Single files or a zipped project — imports resolved automatically.</p>
+          </button>
+          <button class="srcopt">
+            <div class="si">◎</div>
+            <h4>From explorer</h4>
+            <p>Point at any verified Etherscan address. We pull the source.</p>
+          </button>
+        </div>
+        <div class="cs-newfoot">
+          <div class="tierpick">
+            <button>Quick · 10</button>
+            <button class="on">Complete · 20</button>
+            <button>Deep · 180</button>
+          </div>
+          <span class="cs-est">EST. <b>~45 MIN</b> · <b>20 CREDITS</b> — COVERED BY FREE TIER</span>
+          <a class="btn primary small" href="#/console">Queue scan →</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</section>

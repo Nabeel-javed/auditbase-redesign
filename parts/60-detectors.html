@@ -1,0 +1,26 @@
+<section data-route="detectors">
+  <div class="dt">
+    <div class="container">
+      <div class="dt-head">
+        <p class="eyebrow">The detector base</p>
+        <h2 class="h-sec" style="margin-bottom:0">Every check we run.</h2>
+        <p class="sub" style="margin-top:14px">247 detectors across three analysis layers.
+          Filter by severity, search by name — new patterns ship weekly.</p>
+        <div class="dt-tools">
+          <input class="dt-search" id="dtsearch" type="search" placeholder="Search detectors — try “reentrancy”, “oracle”, “delegatecall”…" aria-label="Search detectors">
+          <div class="fbar" id="dtfilter">
+            <button class="fbtn on" data-f="all">All</button>
+            <button class="fbtn" data-f="crit">Critical</button>
+            <button class="fbtn" data-f="high">High</button>
+            <button class="fbtn" data-f="med">Medium</button>
+            <button class="fbtn" data-f="low">Low</button>
+            <button class="fbtn" data-f="info">Info</button>
+            <button class="fbtn" data-f="gas">Gas</button>
+          </div>
+        </div>
+      </div>
+      <div class="dt-count" id="dtcount"></div>
+      <div class="dt-grid" id="dtgrid"></div>
+    </div>
+  </div>
+</section>
